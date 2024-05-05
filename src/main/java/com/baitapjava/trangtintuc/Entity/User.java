@@ -33,6 +33,8 @@ public class User {
 	private String taikhoan;
 	@Column(name = "mat_khau")
 	private String matkhau;
+	@Column(name = "email")
+	private String email;
 	@ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Role> role;
 }

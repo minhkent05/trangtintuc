@@ -2,8 +2,6 @@ package com.baitapjava.trangtintuc.Service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.baitapjava.trangtintuc.Entity.User;
 
 public interface UserService {
@@ -23,4 +21,6 @@ public interface UserService {
 	public String userSigup(User user);
 	
 	public void xoaUser(int id);
+
+	String resetPassword (String username, String email);
 }
