@@ -13,10 +13,10 @@ import com.baitapjava.trangtintuc.Entity.Baibao;
 public interface BaibaoService {
 	
 	public Baibao thembaibaomoi (String tenbaibao, String ngaydang, MultipartFile anh,
-	String noidung, String tacgia, String theloai, int luotxem) throws IOException;
+	String noidung, String tacgia, String theloai, int luotxem,int user_id) throws IOException;
 	
-	public Baibao suabaibao (int id,String tenbaibao, String ngaydang, MultipartFile anh,
-			String noidung, String tacgia, String theloai, int luotxem) throws IOException;
+	public Baibao suabaibao (int id,String tenbaibao, MultipartFile anh,
+			String noidung, String theloai) throws IOException;
 	
 	public Baibao suabaibao2 (int id,Baibao baibao);
 	
@@ -36,4 +36,5 @@ public interface BaibaoService {
 	
 	public List<Baibao> listTheLoai(String theloai);
 	
+	public Page<Baibao> listBaibaoAuthor(String search,int id,int pageNumber,int pageSize);
 }

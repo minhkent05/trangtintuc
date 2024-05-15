@@ -44,9 +44,10 @@ public class BaibaoController {
 			@RequestParam("noidung") String noidung,
 			@RequestParam("tacgia") String tacgia,
 			@RequestParam("theloai") String theloai,
-			@RequestParam("luotxem") int luotxem
+			@RequestParam("luotxem") int luotxem,
+			@RequestParam("user_id") int user_id
 			) throws IOException {
-		return service.thembaibaomoi(tenbaibao,ngaydang,anh,noidung,tacgia,theloai,luotxem);
+		return service.thembaibaomoi(tenbaibao,ngaydang,anh,noidung,tacgia,theloai,luotxem,user_id);
 	}
 	
 	@DeleteMapping("/xoabaibao/{id}")
@@ -57,13 +58,11 @@ public class BaibaoController {
 	@PutMapping("/suabaibao/{id}")
 	public Baibao suabaibao(@PathVariable int id, 
 			@RequestParam("tenbaibao") String tenbaibao,
-			@RequestParam("ngaydang") String  ngaydang,
 			@RequestParam("anh") MultipartFile anh,
 			@RequestParam("noidung") String noidung,
-			@RequestParam("tacgia") String tacgia,
-			@RequestParam("theloai") String theloai,
-			@RequestParam("luotxem") int luotxem) throws IOException {
-		return service.suabaibao(id, tenbaibao,ngaydang,anh,noidung,tacgia,theloai,luotxem);
+			@RequestParam("theloai") String theloai
+			) throws IOException {
+		return service.suabaibao(id, tenbaibao,anh,noidung,theloai);
 	}
 	
 	@PutMapping("/suabaibao2/{id}")
@@ -96,4 +95,10 @@ public class BaibaoController {
 	public List<Baibao> listTheLoai(@RequestParam String theloai){
 		return service.listTheLoai(theloai);
 	}
+	
+	@GetMapping("/listBaibaoAuthor")
+	public Page<Baibao> listBaibaoAuthor(@RequestParam String search,@RequestParam int id,@RequestParam int pageNumber,@RequestParam int pageSize) {
+		return service.listBaibaoAuthor(search,id,pageNumber,pageSize);
+	}
+	
 }
