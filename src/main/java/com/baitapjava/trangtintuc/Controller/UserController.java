@@ -56,6 +56,11 @@ public class UserController {
     public String resetPassword(@RequestParam String username, @RequestParam String email) {
         return service.resetPassword(username,email);
     }
+
+    @PutMapping("/changePassword")
+    public String changePassword(@RequestParam String username, @RequestParam String newpassword) throws Exception{
+        return service.changePassword(username,newpassword);
+
     
     @GetMapping("/listUserPaging")
     public Page<User> listUserPaging(@RequestParam String search,@RequestParam int pageNumber,@RequestParam int pageSize){
@@ -70,6 +75,6 @@ public class UserController {
     @PostMapping("/inserRoleinUser")
     public int inserRoleinUser(@RequestParam int idUser,@RequestParam int idRole) {
         return service.insertRoleinUser(idUser, idRole);
-    	
+
     }
 }

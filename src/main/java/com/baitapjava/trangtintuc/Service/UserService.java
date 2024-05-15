@@ -22,6 +22,11 @@ public interface UserService {
 	
 	public void xoaUser(int id);
 
+
+	String resetPassword (String username, String email);
+
+	String changePassword (String username, String newpassword) throws Exception;
+
 	String resetPassword (String username, String email); 
 	
 	public Page<User> listUserPaging (String search,int pageNumber, int pageSize);
@@ -29,4 +34,5 @@ public interface UserService {
 	public List<Object> listRole(int idUser);
 	
 	public int insertRoleinUser (int idUser,int idRole);
+
 }
