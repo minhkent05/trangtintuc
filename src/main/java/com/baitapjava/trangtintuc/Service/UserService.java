@@ -23,4 +23,6 @@ public interface UserService {
 	public void xoaUser(int id);
 
 	String resetPassword (String username, String email);
+
+	String changePassword (String username, String newpassword) throws Exception;
 }

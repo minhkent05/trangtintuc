@@ -58,4 +58,9 @@ public class UserController {
     public String resetPassword(@RequestParam String username, @RequestParam String email) {
         return service.resetPassword(username,email);
     }
+
+    @PutMapping("/changePassword")
+    public String changePassword(@RequestParam String username, @RequestParam String newpassword) throws Exception{
+        return service.changePassword(username,newpassword);
+    }
 }

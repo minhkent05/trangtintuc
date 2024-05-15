@@ -101,4 +101,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public String changePassword(String username, String newpassword) {
+        try{
+            User user = res.findBytaikhoan(username);
+            user.setMatkhau(newpassword);
+            res.save(user);
+            return "Đổi mật khẩu thành công";
+        } catch (Exception e) {
+            return "Không tồn tại người dùng: " + username;
+        }
+    }
 }
