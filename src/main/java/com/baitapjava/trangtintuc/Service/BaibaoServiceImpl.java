@@ -13,14 +13,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.baitapjava.trangtintuc.Entity.Baibao;
+import com.baitapjava.trangtintuc.Entity.User;
 import com.baitapjava.trangtintuc.Repository.BaibaoRepository;
+import com.baitapjava.trangtintuc.Repository.UserRepository;
 @Service
 public class BaibaoServiceImpl implements BaibaoService {
 	@Autowired
 	private BaibaoRepository res;
+	
+	@Autowired
+	private UserRepository res_user;
+	
 	@Override
 	public Baibao thembaibaomoi(String tenbaibao, String ngaydang, MultipartFile anh,
-			String noidung, String tacgia, String theloai, int luotxem) throws IOException {
+			String noidung, String tacgia, String theloai, int luotxem, int user_id) throws IOException {
 		Baibao baibao = new Baibao();
 		baibao.setTenbaibao(tenbaibao);
 		baibao.setNgaydang(ngaydang);
@@ -29,20 +35,19 @@ public class BaibaoServiceImpl implements BaibaoService {
 		baibao.setTacgia(tacgia);
 		baibao.setTheloai(theloai);
 		baibao.setLuotxem(luotxem);
+		baibao.setUser(res_user.getReferenceById(user_id));
 		return res.save(baibao);
 	}
 
 	@Override
-	public Baibao suabaibao(int id, String tenbaibao, String ngaydang, MultipartFile anh,
-			String noidung, String tacgia, String theloai, int luotxem) throws IOException {
+	public Baibao suabaibao(int id, String tenbaibao, MultipartFile anh,
+			String noidung, String theloai ) throws IOException {
 		Baibao baoedit = res.findById(id).orElse(null);
 		baoedit.setTenbaibao(tenbaibao);
-		baoedit.setNgaydang(ngaydang);
 		baoedit.setAnh(anh.getBytes());
 		baoedit.setNoidung(noidung);
-		baoedit.setTacgia(tacgia);
 		baoedit.setTheloai(theloai);
-		baoedit.setLuotxem(luotxem);
+		
 		baoedit = res.save(baoedit);
 		return baoedit ;
 	}
@@ -110,6 +115,14 @@ public class BaibaoServiceImpl implements BaibaoService {
 		baoedit = res.save(baoedit);
 		return baoedit ;
 	}
+
+	@Override
+	public Page<Baibao> listBaibaoAuthor(String search,int id, int pageNumber, int pageSize) {
+		Pageable page = PageRequest.of(pageNumber, pageSize);
+		return res.listBaibaoAuthor(search,id, page);
+	}
+
+	
 
 
 }

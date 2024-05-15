@@ -40,4 +40,10 @@ public interface BaibaoRepository extends JpaRepository<Baibao, Integer> {
 				+ "where the_loai like %:theloai%\r\n"
 				+ "order by id desc",nativeQuery = true)
 		List<Baibao> listTheLoai(@Param("theloai") String theloai);
+		
+		@Query(value = "select * from trangtintuc.baibao \r\n"
+				+ "where user_id = :id \r\n"
+				+ "and (ten_bai_bao like %:search% or the_loai like %:search%)\r\n"
+				+ "order by id desc",nativeQuery = true)
+		Page<Baibao> listBaibaoAuthor(@Param("search") String search,@Param("id") int id,Pageable pageaeble);
 }

@@ -1,5 +1,6 @@
 package com.baitapjava.trangtintuc.Entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -27,14 +29,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "ten_nguoi_dung")
-	private String tennguoidung;
+//	@Column(name = "ten_nguoi_dung")
+//	private String tennguoidung;
 	@Column(name = "tai_khoan")
 	private String taikhoan;
 	@Column(name = "mat_khau")
 	private String matkhau;
 	@Column(name = "email")
 	private String email;
+	
 	@ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Role> role;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Collection<Baibao> baibao ;
 }

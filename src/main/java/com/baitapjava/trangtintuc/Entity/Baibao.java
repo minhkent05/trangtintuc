@@ -8,10 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,4 +45,11 @@ public class Baibao {
 	private String theloai;
 	@Column(name = "luot_xem")
 	private int luotxem;
+//	@Column(name = "xac_nhan")
+//	private String xacnhan;
+	
+	@ManyToOne 
+	@JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 }
